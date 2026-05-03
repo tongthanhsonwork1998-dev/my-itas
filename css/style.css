@@ -1,0 +1,231 @@
+/*
+ * iTAS B2B Corporate Website CSS
+ * Architecture: Custom Variables + Components + Utilities
+ */
+
+:root {
+    /* B2B Premium Color Palette */
+    --color-primary-dark: #0f172a;    /* Slate 900 - Trust, Professionalism */
+    --color-primary-light: #1e293b;   /* Slate 800 */
+    --color-accent: #22B54A;          /* iTAS Brand Green */
+    --color-accent-hover: #1a943c;
+    --color-accent-soft: rgba(34, 181, 74, 0.15);
+    
+    /* Typography */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Layout & Spacing */
+    --transition-base: all 0.3s ease;
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+    --shadow-lg-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* === BASE TYPOGRAPHY === */
+body {
+    font-family: var(--font-body);
+    color: #334155;
+    line-height: 1.6;
+    background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand, .section__title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+/* === UTILITY CLASSES === */
+.text-primary-dark { color: var(--color-primary-dark) !important; }
+.bg-primary-dark { background-color: var(--color-primary-dark) !important; }
+.text-accent { color: var(--color-accent) !important; }
+.bg-accent { background-color: var(--color-accent) !important; }
+.bg-accent-soft { background-color: var(--color-accent-soft) !important; }
+.border-accent { border: 2px solid var(--color-accent) !important; }
+.tracking-wide { letter-spacing: 0.1em; }
+.text-white-hover:hover { color: #ffffff !important; }
+
+/* === BUTTONS === */
+.btn {
+    font-family: var(--font-heading);
+    transition: var(--transition-base);
+}
+
+/* Ghi đè màu mặc định của Bootstrap cho nút Primary thành màu xanh lá iTAS */
+.btn.btn-primary {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--color-accent);
+    --bs-btn-border-color: var(--color-accent);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--color-accent-hover);
+    --bs-btn-hover-border-color: var(--color-accent-hover);
+    --bs-btn-active-bg: var(--color-accent-hover);
+}
+.btn.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(34, 181, 74, 0.3);
+}
+
+.btn-outline-primary {
+    color: var(--color-primary-dark) !important;
+    border-color: var(--color-primary-dark) !important;
+}
+
+.btn-facebook {
+    color: #1877F2 !important;
+    border-color: #1877F2 !important;
+}
+.btn-facebook:hover {
+    background-color: #1877F2 !important;
+    color: #ffffff !important;
+    border-color: #1877F2 !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--color-primary-dark) !important;
+    color: #ffffff !important;
+}
+
+/* === HEADER === */
+.header__logo {
+    max-height: 45px;
+    width: auto;
+}
+
+.nav-link {
+    color: var(--color-primary-dark) !important;
+    font-size: 0.95rem;
+    transition: var(--transition-base);
+}
+
+.nav-link:hover {
+    color: var(--color-accent) !important;
+}
+
+/* === HERO SECTION === */
+.hero {
+    min-height: 90vh;
+    background-image: url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero__overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.5) 100%);
+    z-index: 1;
+}
+
+/* === SECTIONS === */
+.section__title {
+    color: var(--color-primary-dark);
+}
+
+/* === CARDS (SERVICES, PRODUCTION, ETC) === */
+.card-b2b {
+    transition: var(--transition-base);
+}
+
+.card-b2b:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg-hover) !important;
+}
+
+.card-b2b__img {
+    height: 240px;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.card-b2b:hover .card-b2b__img {
+    transform: scale(1.05);
+}
+
+/* Service Cards */
+.service-card {
+    border-bottom: 4px solid transparent;
+    transition: var(--transition-base);
+}
+
+.service-card:hover {
+    border-bottom-color: var(--color-accent);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md) !important;
+}
+
+.service-card:hover .service-card__icon {
+    background-color: var(--color-accent) !important;
+}
+
+.service-card:hover .service-card__icon i {
+    color: #ffffff !important;
+}
+
+/* Product Showcase Grid */
+.product-card__content {
+    transition: var(--transition-base);
+    background: rgba(15, 23, 42, 0.4); /* Lớp phủ đen mờ để chữ luôn dễ đọc trên mọi bức ảnh */
+    height: 100%;
+}
+
+.product-card:hover .product-card__content {
+    background: rgba(15, 23, 42, 0.8); /* Tối hơn khi di chuột qua */
+}
+
+/* === PROCESS TIMELINE === */
+.process-container { position: relative; }
+.process-step { position: relative; z-index: 1; }
+.process-step__number { 
+    width: 65px; /* Làm to vòng tròn lên một chút để nổi bật hơn */
+    height: 65px; 
+    transition: var(--transition-base);
+}
+
+.process-step:hover .process-step__number {
+    background-color: var(--color-accent) !important;
+    color: #fff !important;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(34, 181, 74, 0.4);
+}
+.form-control-b2b::placeholder {
+    color: #94a3b8;
+    color: #cbd5e1;
+    opacity: 1;
+}
+/* Desktop: Đường đứt nét nối liền */
+@media (min-width: 768px) {
+    .process-step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 32.5px; /* Căn đúng giữa trọng tâm của hình tròn 65px */
+        left: 50%;
+        width: 100%; /* Chạy thẳng sang tâm của hình tròn tiếp theo */
+        border-top: 2px dashed var(--color-accent);
+        z-index: -1;
+        opacity: 0.6;
+    }
+}
+
+/* Mobile: Mũi tên hướng xuống */
+@media (max-width: 767px) {
+    .process-step:not(:last-child)::after {
+        content: '\f229'; /* Ký tự của icon chevron-down trong Bootstrap Icons */
+        font-family: 'bootstrap-icons';
+        position: absolute;
+        bottom: -2.2rem; /* Rơi thẳng vào khoảng trống giữa các bước */
+        left: 50%;
+        transform: translateX(-50%);
+        color: var(--color-accent);
+        font-size: 1.5rem;
+        opacity: 0.8;
+    }
+}
+
+/* === MISC === */
+.cert-logo { opacity: 0.4; transition: var(--transition-base); cursor: pointer; }
+.cert-logo:hover { opacity: 1; color: var(--color-primary-dark) !important; }
+.footer__links a { transition: color 0.2s; }
+.footer__links a:hover { color: var(--color-accent) !important; text-decoration: underline !important; }
+.list-group-item-action:hover { background-color: #f8fafc; border-left: 4px solid var(--color-accent); }
