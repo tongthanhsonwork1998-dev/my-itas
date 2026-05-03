@@ -224,8 +224,8 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .section__title {
 }
 
 /* === MISC === */
-.cert-logo { opacity: 0.4; transition: var(--transition-base); cursor: pointer; }
-.cert-logo:hover { opacity: 1; color: var(--color-primary-dark) !important; }
+.cert-card { transition: var(--transition-base); border: 2px solid transparent; cursor: pointer; }
+.cert-card:hover { transform: translateY(-5px); border-color: var(--color-accent); box-shadow: var(--shadow-md) !important; }
 .footer__links a { transition: color 0.2s; }
 .footer__links a:hover { color: var(--color-accent) !important; text-decoration: underline !important; }
 .list-group-item-action:hover { background-color: #f8fafc; border-left: 4px solid var(--color-accent); }
