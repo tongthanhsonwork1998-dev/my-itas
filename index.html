@@ -294,34 +294,41 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
-                        <div class="list-group shadow-sm border-0">
-                            <div class="list-group-item list-group-item-action d-flex flex-column flex-md-row justify-content-between align-items-md-center p-4 border-bottom">
-                                <div class="mb-3 mb-md-0">
-                                    <h5 class="fw-bold mb-2 text-primary-dark">Công nhân May công nghiệp</h5>
-                                    <span class="badge bg-accent-soft text-accent mb-2 px-3 py-2 rounded-pill">Đang tuyển</span>
-                                    <p class="text-muted small mb-0"><i class="bi bi-geo-alt me-1"></i> KĐT Phúc Trì, Ninh Bình &nbsp;|&nbsp; <i class="bi bi-cash me-1"></i> Thu nhập: Lương cứng + Thưởng</p>
-                                </div>
-                                <button class="btn btn-outline-dark px-4 rounded-pill">Xem chi tiết</button>
-                            </div>
-                            
-                            <div class="list-group-item list-group-item-action d-flex flex-column flex-md-row justify-content-between align-items-md-center p-4 border-bottom">
-                                <div class="mb-3 mb-md-0">
-                                    <h5 class="fw-bold mb-2 text-primary-dark">Quản lý / Tổ trưởng Chuyền may</h5>
-                                    <span class="badge bg-accent-soft text-accent mb-2 px-3 py-2 rounded-pill">Đang tuyển</span>
-                                    <p class="text-muted small mb-0"><i class="bi bi-geo-alt me-1"></i> KĐT Phúc Trì, Ninh Bình &nbsp;|&nbsp; <i class="bi bi-mortarboard me-1"></i> Yêu cầu: Quản lý chất lượng</p>
-                                </div>
-                                <button class="btn btn-outline-dark px-4 rounded-pill">Xem chi tiết</button>
-                            </div>
-
-                            <div class="list-group-item list-group-item-action d-flex flex-column flex-md-row justify-content-between align-items-md-center p-4">
-                                <div class="mb-3 mb-md-0">
-                                    <h5 class="fw-bold mb-2 text-primary-dark">Kỹ thuật viên Hệ thống chuyền</h5>
-                                    <span class="badge bg-accent-soft text-accent mb-2 px-3 py-2 rounded-pill">Đang tuyển</span>
-                                    <p class="text-muted small mb-0"><i class="bi bi-geo-alt me-1"></i> KĐT Phúc Trì, Ninh Bình &nbsp;|&nbsp; <i class="bi bi-tools me-1"></i> Yêu cầu: Am hiểu bảo trì</p>
-                                </div>
-                                <button class="btn btn-outline-dark px-4 rounded-pill">Xem chi tiết</button>
-                            </div>
+                        <!-- JavaScript sẽ tự động vẽ danh sách công việc vào div này -->
+                        <div class="list-group shadow-sm border-0" id="job-list-container">
+                            <!-- Nội dung được sinh ra tự động -->
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOB DETAILS OFFCANVAS (Thanh trượt bên phải hiển thị chi tiết CV) -->
+            <div class="offcanvas offcanvas-end shadow" tabindex="-1" id="jobDetailsOffcanvas" aria-labelledby="jobDetailsOffcanvasLabel" style="width: 450px; max-width: 100vw;">
+                <div class="offcanvas-header bg-light border-bottom p-4">
+                    <h5 class="offcanvas-title fw-bold text-primary-dark" id="jobDetailsOffcanvasLabel">Chi Tiết Công Việc</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body p-4">
+                    <span class="badge bg-accent-soft text-accent mb-3 px-3 py-2 rounded-pill" id="oc-type">Toàn thời gian</span>
+                    <h4 class="fw-bold mb-3 text-primary-dark" id="oc-title">Tên Công Việc</h4>
+                    
+                    <div class="d-flex align-items-center mb-4 text-muted small">
+                        <i class="bi bi-geo-alt me-2"></i> <span id="oc-location">Ninh Bình</span>
+                        <span class="mx-2">|</span> 
+                        <i class="bi bi-cash me-2"></i> <span id="oc-salary" class="text-accent fw-bold">Thỏa thuận</span>
+                    </div>
+
+                    <h6 class="fw-bold text-primary-dark mb-3"><i class="bi bi-briefcase me-2 text-accent"></i>Mô tả công việc</h6>
+                    <div class="text-muted small mb-4" id="oc-desc"></div>
+
+                    <h6 class="fw-bold text-primary-dark mb-3"><i class="bi bi-person-check me-2 text-accent"></i>Yêu cầu ứng viên</h6>
+                    <div class="text-muted small mb-4" id="oc-req"></div>
+
+                    <h6 class="fw-bold text-primary-dark mb-3"><i class="bi bi-gift me-2 text-accent"></i>Quyền lợi được hưởng</h6>
+                    <div class="text-muted small mb-4" id="oc-ben"></div>
+
+                    <div class="d-grid mt-5">
+                        <a href="#contact" class="btn btn-primary fw-bold py-3" data-bs-dismiss="offcanvas" onclick="prepareApplicationForm()">Ứng Tuyển Ngay</a>
                     </div>
                 </div>
             </div>
@@ -364,23 +371,28 @@
                     <div class="col-lg-7">
                         <div class="bg-white p-4 p-md-5 rounded-4 shadow-sm contact-form-card">
                             <h4 class="fw-bold mb-4 text-primary-dark"><i class="bi bi-chat-dots text-accent me-2"></i>Gửi Yêu Cầu Cho Chúng Tôi</h4>
-                            <form>
+                            <!-- Thuộc tính action trỏ tới dịch vụ xử lý Form (Ví dụ: Formspree) -->
+                            <form action="https://formspree.io/f/xnjwprjv" method="POST">
+                                <!-- Tiêu đề tùy chỉnh khi gửi về email -->
+                                <input type="hidden" name="_subject" value="[iTAS Website] Khách hàng liên hệ mới!">
+                                <!-- Trường ẩn "Bẫy Mật Ong" để chống bot spam -->
+                                <input type="text" name="_gotcha" style="display:none">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label for="name" class="form-label fw-bold text-muted mb-1">Họ và Tên <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control form-control-b2b py-2" id="name" placeholder="Nguyễn Văn A" required>
+                                        <input type="text" class="form-control form-control-b2b py-2" id="name" name="Họ Tên" placeholder="Nguyễn Văn A" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="company" class="form-label fw-bold text-muted mb-1">Công Ty</label>
-                                        <input type="text" class="form-control form-control-b2b py-2" id="company" placeholder="Tên doanh nghiệp">
+                                        <input type="text" class="form-control form-control-b2b py-2" id="company" name="Công Ty" placeholder="Tên doanh nghiệp">
                                     </div>
                                     <div class="col-md-6">
                                         <label for="email" class="form-label fw-bold text-muted mb-1">Email <span class="text-danger">*</span></label>
-                                        <input type="email" class="form-control form-control-b2b py-2" id="email" placeholder="email@congty.com" required>
+                                        <input type="email" class="form-control form-control-b2b py-2" id="email" name="Email" placeholder="email@congty.com" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="service" class="form-label fw-bold text-muted mb-1">Dịch Vụ Quan Tâm</label>
-                                        <select class="form-select form-control-b2b py-2" id="service">
+                                        <select class="form-select form-control-b2b py-2" id="service" name="Dịch Vụ Quan Tâm">
                                             <option value="oem">Sản Xuất OEM</option>
                                             <option value="odm">Thiết Kế ODM</option>
                                             <option value="fob">Đơn Hàng FOB</option>
@@ -388,7 +400,7 @@
                                     </div>
                                     <div class="col-12">
                                         <label for="message" class="form-label fw-bold text-muted mb-1">Nội Dung Yêu Cầu <span class="text-danger">*</span></label>
-                                        <textarea class="form-control form-control-b2b py-2" id="message" rows="4" placeholder="Vui lòng mô tả chi tiết yêu cầu của bạn..." required></textarea>
+                                        <textarea class="form-control form-control-b2b py-2" id="message" name="Nội Dung Yêu Cầu" rows="4" placeholder="Vui lòng mô tả chi tiết yêu cầu của bạn..." required></textarea>
                                     </div>
                                     <div class="col-12 mt-4">
                                         <button type="submit" class="btn btn-primary w-100 py-3 fw-bold"><i class="bi bi-send-fill me-2"></i>Gửi Yêu Cầu</button>
@@ -451,5 +463,6 @@
 
     <!-- JS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
